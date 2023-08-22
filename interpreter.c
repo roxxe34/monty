@@ -1,5 +1,5 @@
 #include "monty.h"
-#include <stdio.h>
+
 
 void run_interpreter(FILE *file)
 {

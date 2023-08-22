@@ -1,6 +1,6 @@
-push 1
-pint
+push 4
+push 8
 push 2
-pint
-push 3
-pint
+push 10
+mul
+pall

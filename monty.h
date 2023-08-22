@@ -10,6 +10,7 @@
 
 #define DELIMS " \n\t\a\b"
 #define MAX_LINE_LENGTH 100
+#define _GNU_SOURCE
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -47,7 +48,7 @@ extern instruction_t instructions[];
 
 void run_interpreter(FILE *file);
 int is_empty(stack_t *stack);
-int pop(stack_t **stack);
+int pop(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, int value);
 void opcode_pall(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
@@ -55,6 +56,17 @@ void opcode_push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void opcode_pint(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
+void opcode_pop(stack_t **stack, unsigned int line_number);
+void opcode_swap(stack_t **stack, unsigned int line_number);
+size_t stack_size(stack_t *stack);
+void opcode_add(stack_t **stack, unsigned int line_number);
+void opcode_nop(stack_t **stack, unsigned int line_number);
+void opcode_sub(stack_t **stack, unsigned int line_number);
+void opcode_div(stack_t **stack, unsigned int line_number);
+void opcode_mul(stack_t **stack, unsigned int line_number);
+
+
 
 
 
