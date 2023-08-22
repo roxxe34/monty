@@ -12,6 +12,9 @@ instruction_t instructions[] = {
     {"div", opcode_div},
     {"mul", opcode_mul},
     {"mod", opcode_mod},
+    {"pchar", opcode_pchar},
+    {"pstr", opcode_pstr},
+    {"rotl", opcode_rotl},
     
     /* Add more instructions as needed */
     {NULL, NULL}
@@ -170,4 +173,51 @@ void opcode_mod(stack_t **stack, unsigned int line_number)
     second->n %= first->n;
 
     pop(stack, line_number);
+}
+void opcode_pchar(stack_t **stack, unsigned int line_number)
+{
+    if (is_empty(*stack))
+    {
+        fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+    
+    stack_t *first = *stack;
+    if (first->n > 127 || first->n < 0)
+    {
+        fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+        free_stack(first);
+        exit(EXIT_FAILURE);
+    }
+
+    putchar(first->n);
+    putchar('\n');
+    pop(stack, line_number);
+}
+void opcode_pstr(stack_t **stack, unsigned int line_number)
+{
+    stack_t *current = *stack;
+
+    while (current != NULL && current->n > 0 && current->n <= 127)
+    {
+        putchar(current->n);
+        current = current->next;
+    }
+    
+    putchar('\n');
+}
+void opcode_rotl(stack_t **stack, unsigned int line_number)
+{
+    stack_t *top = *stack;
+    stack_t *top2= top->next;
+    stack_t *curr = top2;
+    while(curr->next != NULL)
+    {
+        curr = curr->next;
+    }
+    curr->next = top;
+    top->next = NULL;
+    top->prev = curr;
+    *stack = top2;
+    top2->prev = NULL;
 }

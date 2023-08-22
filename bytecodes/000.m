@@ -1,7 +1,7 @@
-# This is a comment
-push 1
-# This is another comment
-push 2
-# Yet another comment
-push 3
+push 6
+push 7
+push 8
+push 1000
+pall
+rotl
 pall
