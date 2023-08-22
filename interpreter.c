@@ -13,6 +13,9 @@ void run_interpreter(FILE *file)
     while (getline(&line, &len, file) != -1)
     {
         line_number++;
+        if (line[0] == '#') {
+            continue;
+        }
         
         /* Tokenize the line to extract the opcode and argument */
         opcode = strtok(line, " \n\t\a\b$");
