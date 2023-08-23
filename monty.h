@@ -43,8 +43,10 @@ typedef struct instruction_s
 } instruction_t;
 
 extern instruction_t instructions[];
-
-
+typedef int bool;
+#define true 1
+#define false 0
+bool is_stack_mode = true;
 
 void run_interpreter(FILE *file);
 int is_empty(stack_t *stack);
@@ -70,6 +72,8 @@ void opcode_pchar(stack_t **stack, unsigned int line_number);
 void opcode_pstr(stack_t **stack, unsigned int line_number);
 void opcode_rotl(stack_t **stack, unsigned int line_number);
 
+void opcode_queue(stack_t **stack, unsigned int line_number)
+void opcode_stack(stack_t **stack, unsigned int line_number)
 
 
 
