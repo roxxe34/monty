@@ -1,6 +1,5 @@
 #include "monty.h"
 
-
 void run_interpreter(FILE *file)
 {
     stack_t *stack = NULL; 
@@ -22,6 +21,17 @@ void run_interpreter(FILE *file)
 
         if (opcode)
         {
+            if (strcmp(opcode, "stack") == 0)
+            {
+                opcode_stack(&stack, line_number);
+                continue;
+            }
+            else if (strcmp(opcode, "queue") == 0)
+            {
+                opcode_queue(&stack, line_number);
+                continue;
+            }
+
             /* Lookup and execute the opcode function using opcode-to-function mapping */
             int i = 0;
             while (instructions[i].opcode)

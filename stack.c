@@ -1,8 +1,27 @@
 #include "monty.h"
 
+typedef int bool;
+#define true 1
+#define false 0
+
+bool is_stack_mode = true;
+
+void opcode_stack(stack_t **stack, unsigned int line_number)
+{
+    (void)stack;
+    (void)line_number;
+    is_stack_mode = true;
+}
+
+void opcode_queue(stack_t **stack, unsigned int line_number)
+{
+    (void)stack;
+    (void)line_number;
+    is_stack_mode = false;
+}
+
 void push(stack_t **stack, int value)
 {
-    /* Create a new stack node */
     stack_t *new_node = malloc(sizeof(stack_t));
     if (!new_node)
     {
@@ -12,20 +31,38 @@ void push(stack_t **stack, int value)
 
     new_node->n = value;
     new_node->prev = NULL;
-    new_node->next = *stack;
-
-    if (*stack)
-        (*stack)->prev = new_node;
-
-    *stack = new_node;
+    if (is_stack_mode)
+    {
+        new_node->next = *stack;
+        if (*stack)
+            (*stack)->prev = new_node;
+        *stack = new_node;
+    }
+    else
+    {
+        stack_t *temp = *stack;
+        if (!temp)
+        {
+            new_node->next = NULL;
+            *stack = new_node;
+        }
+        else
+        {
+            while (temp->next)
+                temp = temp->next;
+            temp->next = new_node;
+            new_node->next = NULL;
+            new_node->prev = temp;
+        }
+    }
 }
+
 int pop(stack_t **stack, unsigned int line_number)
 {
     int value;
     stack_t *temp;
 
     (void)line_number;
-    
 
     if (!*stack)
     {
