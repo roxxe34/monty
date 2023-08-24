@@ -51,6 +51,7 @@ typedef struct global_variable
 	FILE *file;
 	int push_arg;
 	char *buffer;
+	int queue;
 } global_var;
 
 extern global_var global;
@@ -75,6 +76,8 @@ void opcode_add(stack_t **stack, unsigned int line_number);
 void opcode_mul(stack_t **stack, unsigned int line_number);
 void opcode_div(stack_t **stack, unsigned int line_number);
 void opcode_mod(stack_t **stack, unsigned int line_number);
+void opcode_stack(stack_t **stack, unsigned int line_number);
+void opcode_queue(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
 int _isalpha(int c);
 #endif

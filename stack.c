@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
- * opcode_push - Pushes an element to the stack.
- * @stack: Double pointer to the top of the stack.
+ * opcode_push - Pushes an element to the stack or queue.
+ * @stack: Double pointer to the top of the stack or queue.
  * @line_number: Line number of the opcode.
  *
  * Return: None.
@@ -10,20 +10,47 @@ void opcode_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top;
 	(void)line_number;
-
-	top = malloc(sizeof(stack_t));
-	if (top == NULL)
+	if (global.queue == 0)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		top = malloc(sizeof(stack_t));
+		if (top == NULL)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
 
-	top->n = global.push_arg;
-	top->next = *stack;
-	top->prev = NULL;
-	if (*stack != NULL)
-		(*stack)->prev = top;
-	*stack = top;
+		top->n = global.push_arg;
+		top->next = *stack;
+		top->prev = NULL;
+		if (*stack != NULL)
+			(*stack)->prev = top;
+		*stack = top;
+	}else
+	{
+		top = malloc(sizeof(stack_t));
+		if (top == NULL)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
+
+		top->n = global.push_arg;
+		top->next = NULL;
+
+		if (*stack == NULL)
+		{
+			top->prev = NULL;
+			*stack = top;
+		}
+		else
+		{
+			stack_t *last = *stack;
+			while (last->next != NULL)
+				last = last->next;
+			last->next = top;
+			top->prev = last;
+		}
+	}
 }
 
 /**

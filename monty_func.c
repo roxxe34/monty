@@ -70,6 +70,8 @@ instruct_f get_op_func(char *str)
 		{"pstr", opcode_pstr},
 		{"rotl", opcode_rotl},
 		{"rotr", opcode_rotr},
+		{"stack",opcode_stack},
+		{"queue",opcode_queue},
 		{NULL, NULL},
 	};
 

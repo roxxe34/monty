@@ -1,5 +1,7 @@
 #include "monty.h"
-global_var global;
+
+global_var global = {NULL, 0, NULL, 0};
+
 /**
  * main - driver function for monty program
  * @ac: int num of arguments
@@ -8,9 +10,7 @@ global_var global;
  */
 int main(int ac, char **av)
 {
-	stack_t *stack;
-
-	stack = NULL;
+	stack_t *stack = NULL;
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
