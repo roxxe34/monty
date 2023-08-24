@@ -1,117 +1,100 @@
 #include "monty.h"
 /**
- * push - Adds a new node at the beginning of a stack.
- * @stack: A pointer to a pointer to the top of the stack.
- * @value: The value to be added to the stack.
- *
- * Return: None.
+ * opcode_push - push int to a stack
+ * @stack: linked lists for monty stack
+ * @line_number: number of line opcode occurs on
  */
-void push(stack_t **stack, int value)
+void opcode_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *top;
+	(void)line_number;
 
-	if (!new_node)
+	top = malloc(sizeof(stack_t));
+	if (top == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = value;
-	new_node->prev = NULL;
-	new_node->next = *stack;
-
-	if (*stack)
-		(*stack)->prev = new_node;
-
-	*stack = new_node;
+	top->n = global.push_arg;
+	top->next = *stack;
+	top->prev = NULL;
+	if (*stack != NULL)
+		(*stack)->prev = top;
+	*stack = top;
 }
+
 /**
- * pop - Removes the top element of a stack.
- * @stack: A pointer to a pointer to the top of the stack.
- * @line_number: The line number of the instruction.
- *
- * Return: The value of the removed element.
+ * opcode_pall - print all function
+ * @stack: pointer to linked list stack
+ * @line_number: number of line opcode occurs on
  */
-int pop(stack_t **stack, unsigned int line_number)
+void opcode_pall(stack_t **stack, unsigned int line_number)
 {
-	int value;
-	stack_t *temp;
+	stack_t *curr;
 
+	curr = *stack;
 	(void)line_number;
-
-
-	if (!*stack)
+	while (curr != NULL)
 	{
-		fprintf(stderr, "Error: can't pop an empty stack\n");
+		printf("%d\n", curr->n);
+		curr = curr->next;
+	}
+}
+
+/**
+ * opcode_pint - print int a top of stack
+ * @stack: pointer to linked list stack
+ * @line_number: number of line opcode occurs on
+ *
+ */
+void opcode_pint(stack_t **stack, unsigned int line_number)
+{
+	stack_t *curr;
+
+	curr = *stack;
+	if (curr == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	printf("%d\n", curr->n);
+}
 
-	value = (*stack)->n;
-	temp = *stack;
-	*stack = (*stack)->next;
+/**
+ * opcode_pop - remove element a list
+ *@stack: pointer to first node
+ *@line_number: integer
+ *Return: void
+ */
+void opcode_pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *node = *stack;
 
-	if (*stack)
+	if (stack == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	*stack = node->next;
+	if (*stack != NULL)
 		(*stack)->prev = NULL;
-
-	free(temp);
-	return (value);
+	free(node);
 }
+
 /**
- * pall - Prints all elements of a stack.
- * @stack: A pointer to a pointer to the top of the stack.
- * @line_number: The line number of the instruction.
+ * free_stack - free a list
+ * @head: pointer to first node
  *
- * Return: None.
  */
-void pall(stack_t **stack, unsigned int line_number)
+void free_stack(stack_t *head)
 {
-	stack_t *temp = *stack;
+	stack_t *tmp;
 
-	(void)line_number;
-	if (is_empty(*stack))
-		return;
-
-	while (temp)
+	while (head != NULL)
 	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
+		tmp = head->next;
+		free(head);
+		head = tmp;
 	}
-}
-/**
- * pint - Prints the top element of a stack.
- * @stack: A pointer to a pointer to the top of the stack.
- * @line_number: The line number of the instruction.
- *
- * Return: None.
- */
-void pint(stack_t **stack, unsigned int line_number)
-{
-
-	(void)line_number;
-	printf("%d\n", (*stack)->next->n);
-}
-/**
- * free_stack - Frees all elements of a stack.
- * @stack: A pointer to the top of the stack.
- *
- * Return: None.
- */
-void free_stack(stack_t *stack)
-{
-	stack_t *current;
-	stack_t *next;
-
-	if (stack == NULL)
-		return;
-
-	current = stack;
-	next = NULL;
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-
-	stack = NULL;
 }
