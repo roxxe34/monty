@@ -11,6 +11,7 @@ global_var global = {NULL, 0, NULL, 0};
 int main(int ac, char **av)
 {
 	stack_t *stack = NULL;
+
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");

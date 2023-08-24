@@ -25,7 +25,8 @@ void opcode_push(stack_t **stack, unsigned int line_number)
 		if (*stack != NULL)
 			(*stack)->prev = top;
 		*stack = top;
-	}else
+	}
+	else
 	{
 		top = malloc(sizeof(stack_t));
 		if (top == NULL)
