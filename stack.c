@@ -86,10 +86,9 @@ void pall(stack_t **stack, unsigned int line_number)
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
-	(void)line_number;
 
-	printf("%d\n", temp->n);
+
+	printf("%d\n", (*stack)->next->n);
 }
 /**
  * free_stack - Frees all elements of a stack.
