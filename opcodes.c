@@ -37,11 +37,10 @@ void opcode_push(stack_t **stack, unsigned int line_number)
  */
 void opcode_pint(stack_t **stack, unsigned int line_number)
 {
-	if (!stack || !(*stack))
+	if (is_empty(*stack))
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
-
 	}
 	pint(stack, line_number);
 }
