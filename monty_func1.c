@@ -1,9 +1,12 @@
 #include "monty.h"
 
 /**
- * opcode_sub - sub top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_sub - Subtracts the top element from the second
+ * top element of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_sub(stack_t **stack, unsigned int line_number)
 {
@@ -34,9 +37,11 @@ void opcode_sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_mul - mul top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_mul - Multiplies the top two elements of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_mul(stack_t **stack, unsigned int line_number)
 {
@@ -92,9 +97,12 @@ void opcode_div(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_mod - mod top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_mod - Computes the modulus of the second top element
+ * by the top element of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_mod(stack_t **stack, unsigned int line_number)
 {

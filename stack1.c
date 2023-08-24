@@ -1,10 +1,11 @@
 #include "monty.h"
 /**
- * opcode_swap - swap top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_swap - Swaps the top two elements of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
-
 void opcode_swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *first;
@@ -22,9 +23,11 @@ void opcode_swap(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_add - add top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_add - Adds the top two elements of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_add(stack_t **stack, unsigned int line_number)
 {
@@ -67,10 +70,11 @@ void opcode_nop(__attribute__ ((unused))stack_t **stack,
 }
 
 /**
- * opcode_pchar - prints the ASCII value of a number
- * @stack: pointer to the top of the stack
- * @line_number: the index of the current line
+ * opcode_pchar - Prints the ASCII character at the top of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
  *
+ * Return: None.
  */
 void opcode_pchar(stack_t **stack, unsigned int line_number)
 {

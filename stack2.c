@@ -1,9 +1,11 @@
 #include "monty.h"
 
 /**
- * opcode_pstr - mod top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_pstr - Prints a string of characters.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_pstr(stack_t **stack, unsigned int line_number)
 {
@@ -25,9 +27,11 @@ void opcode_pstr(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_rotl - mod top of stack y second top stack
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_rotl - Rotates the stack to the top.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_rotl(stack_t **stack, unsigned int line_number)
 {
@@ -51,9 +55,9 @@ void opcode_rotl(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_rotr - mod top of stack y second top stacks
- * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_rotr - Rotates the stack to the bottom.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
  */
 void opcode_rotr(stack_t **stack, unsigned int line_number)
 {

@@ -1,8 +1,10 @@
 #include "monty.h"
 /**
- * opcode_push - push int to a stack
- * @stack: linked lists for monty stack
- * @line_number: number of line opcode occurs on
+ * opcode_push - Pushes an element to the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_push(stack_t **stack, unsigned int line_number)
 {
@@ -43,10 +45,11 @@ void opcode_pall(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_pint - print int a top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * opcode_pint - Prints the value at the top of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
  *
+ * Return: None.
  */
 void opcode_pint(stack_t **stack, unsigned int line_number)
 {
@@ -62,10 +65,11 @@ void opcode_pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * opcode_pop - remove element a list
- *@stack: pointer to first node
- *@line_number: integer
- *Return: void
+ * opcode_pop - Removes the top element of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number of the opcode.
+ *
+ * Return: None.
  */
 void opcode_pop(stack_t **stack, unsigned int line_number)
 {
