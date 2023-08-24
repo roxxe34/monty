@@ -88,12 +88,6 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 
 	(void)line_number;
-	if (!*stack)
-	{
-		fprintf(stderr, "Error: can't pint, stack empty\n");
-		exit(EXIT_FAILURE);
-	}
-
 	printf("%d\n", (*stack)->next->n);
 }
 /**
